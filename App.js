@@ -1,55 +1,58 @@
-import { View, Button, Text, Modal, StatusBar, ActivityIndicator, Alert} from 'react-native';
-import {useState} from "react";
-import Greet from "./components/Greet";
-
-const logoImg = require('./assets/adaptive-icon.png')
-
-// StatusBar  is for android
-//But Text style can be changed on both
+import {View, Text, StyleSheet} from "react-native";
 
 export default function App(){
-    const [isModalVisible, setIsModalVisible] = useState(false);
-    const [isStatusBarVisible, setIsStatusBarVisible] = useState(false);
-    return <View style={{flex: 1, backgroundColor: "plum", padding: 60}}>
-            <StatusBar backgroundColor="green"
-                barStyle="light-content"
-                hidden={isStatusBarVisible}
-            />
-            <Button title="Toggle StatusBar" onPress={() => setIsStatusBarVisible(!isStatusBarVisible)}/>
-            <Greet name="Dhiraj"/>
-            <Greet name="Pradhan"/>
-            <ActivityIndicator size="large" color="midnightblue" animating={true}/>
-
-            <Button title="Alert!" onPress={() => Alert.alert('Invalid Data !')} />
-            <Button title="Alert 2 !" onPress={() => Alert.alert('Invalid Data !', 'DOB incorrect')} />
-            <Button title="Alert 3 !"
-                    onPress={() => Alert.alert('Invalid Data !', 'DOB incorrect', [
-                        {
-                            text: "Cancel",
-                            onPress: () => console.log("Cancel Pressed")
-                        },
-                        {
-                            text: "Done",
-                            onPress: () => console.log("Done Pressed")
-                        }
-                    ])}
-            />
-
-
-            <Button title="Click Me!" onPress={() => setIsModalVisible(true)}
-                color="midnightblue"
-            />
-            <Modal
-                visible={isModalVisible}
-                onRequestClose={ () => setIsModalVisible(false) }
-                animationType="slide"
-                presentationStyle="formSheet" //just for iOS
-            >
-                <View style={{backgroundColor: "lightblue", flex: 1, padding:60}}>
-                    <Text>Modal Content</Text>
-                    <Button title="Close" color="midnightblue" onPress={() => setIsModalVisible(false)}/>
-                </View>
-            </Modal>
-
+    return  (
+        <View style={styles.container}>
+            <View style={styles.darkMode}>
+                <Text style={styles.darkModeText}>
+                    StyleSheet Inheritance Example
+                    <Text style={styles.boldText}>Text in bold.</Text>
+                </Text>
+            </View>
+            <Text style={styles.title}>Stylesheet API</Text>
+            <View style={[styles.box, styles.lightblueBg, styles.androidShadow]}>
+                <Text>LightBlue Box</Text>
+            </View>
+            <View style={[styles.box, styles.lightgreenBg, styles.androidShadow]}>
+                <Text>LightGreen Box</Text>
+            </View>
         </View>
+    )
 }
+
+
+const styles = StyleSheet.create({
+    container: {flex: 1, backgroundColor:"lightgray", padding: 60},
+    darkMode: {backgroundColor: "black"},
+    darkModeText: {color: "white"},
+    boldText: {fontWeight: "bold"},
+    title: {fontStyle: "italic", fontSize: 15},
+    box: {
+            height: 250,
+            width: 250,
+            paddingHorizontal: 50,
+            paddingVertical:25,
+            backgroundColor: "pink",
+            marginVertical: 10,
+            borderWidth: 2,
+            borderColor: "violet",
+            borderRadius:15,
+        },
+    lightblueBg: {backgroundColor: "lightblue"},
+    lightgreenBg: {backgroundColor: "lightgreen"},
+    //shadow property for ios
+    boxShadow: {
+        shadowColor: "blue",
+        shadowOffset: {
+            width: 6,
+            height: 6,
+        },
+        shadowOpacity: 0.6,
+        shadowRadius: 4
+    },
+    //shadow property for android
+    androidShadow: {
+        elevation: 10,
+        shadowColor: "violet"
+    }
+});
