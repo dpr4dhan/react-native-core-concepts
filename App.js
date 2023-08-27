@@ -1,5 +1,6 @@
 import { View, Button, Text, Modal, StatusBar, ActivityIndicator, Alert} from 'react-native';
 import {useState} from "react";
+import Greet from "./components/Greet";
 
 const logoImg = require('./assets/adaptive-icon.png')
 
@@ -15,10 +16,8 @@ export default function App(){
                 hidden={isStatusBarVisible}
             />
             <Button title="Toggle StatusBar" onPress={() => setIsStatusBarVisible(!isStatusBarVisible)}/>
-
-            <ActivityIndicator/>
-            <ActivityIndicator size="large"/>
-            <ActivityIndicator size="large" color="white"/>
+            <Greet name="Dhiraj"/>
+            <Greet name="Pradhan"/>
             <ActivityIndicator size="large" color="midnightblue" animating={true}/>
 
             <Button title="Alert!" onPress={() => Alert.alert('Invalid Data !')} />
