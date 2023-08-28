@@ -1,58 +1,30 @@
-import {View, Text, StyleSheet} from "react-native";
+import {View, StyleSheet} from "react-native";
+import Box from "./components/Box";
 
 export default function App(){
-    return  (
+    return (
         <View style={styles.container}>
-            <View style={styles.darkMode}>
-                <Text style={styles.darkModeText}>
-                    StyleSheet Inheritance Example
-                    <Text style={styles.boldText}>Text in bold.</Text>
-                </Text>
-            </View>
-            <Text style={styles.title}>Stylesheet API</Text>
-            <View style={[styles.box, styles.lightblueBg, styles.androidShadow]}>
-                <Text>LightBlue Box</Text>
-            </View>
-            <View style={[styles.box, styles.lightgreenBg, styles.androidShadow]}>
-                <Text>LightGreen Box</Text>
-            </View>
+            <Box style={{backgroundColor: "red"}}>Box 1</Box>
+            <Box style={{backgroundColor: "blue"}}>Box 2</Box>
+            <Box style={{backgroundColor: "green"}}>Box 3</Box>
+            <Box style={{backgroundColor: "violet"}}>Box 4</Box>
+            <Box style={{backgroundColor: "pink"}}>Box 5</Box>
+            <Box style={{backgroundColor: "cyan"}}>Box 6</Box>
+            <Box style={{backgroundColor: "orange"}}>Box 7</Box>
         </View>
     )
 }
 
-
 const styles = StyleSheet.create({
-    container: {flex: 1, backgroundColor:"lightgray", padding: 60},
-    darkMode: {backgroundColor: "black"},
-    darkModeText: {color: "white"},
-    boldText: {fontWeight: "bold"},
-    title: {fontStyle: "italic", fontSize: 15},
-    box: {
-            height: 250,
-            width: 250,
-            paddingHorizontal: 50,
-            paddingVertical:25,
-            backgroundColor: "pink",
-            marginVertical: 10,
-            borderWidth: 2,
-            borderColor: "violet",
-            borderRadius:15,
-        },
-    lightblueBg: {backgroundColor: "lightblue"},
-    lightgreenBg: {backgroundColor: "lightgreen"},
-    //shadow property for ios
-    boxShadow: {
-        shadowColor: "blue",
-        shadowOffset: {
-            width: 6,
-            height: 6,
-        },
-        shadowOpacity: 0.6,
-        shadowRadius: 4
-    },
-    //shadow property for android
-    androidShadow: {
-        elevation: 10,
-        shadowColor: "violet"
+    container: {
+        // flex:1,
+        // flexDirection: "column",
+        // justifyContent: "center",
+        // alignItems: "center",
+        flexWrap: "wrap",
+        height: 300,
+        marginTop: 64,
+        borderWidth: 6,
+        borderColor: "black"
     }
-});
+})
